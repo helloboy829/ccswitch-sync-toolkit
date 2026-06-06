@@ -22,6 +22,16 @@ try {
         throw "Encryption password cannot be empty."
     }
 
+    # Pull first before generating new files to avoid unstaged changes conflict
+    $repoRoot = Get-RepoRoot
+    Push-Location $repoRoot
+    try {
+        Invoke-Git pull --rebase origin (Get-ToolkitConfig).branch
+    } finally {
+        Pop-Location
+    }
+
+    # Now generate encrypted backup after pull is complete
     $zipPath = Compress-SourceFiles
     $archivePath = Encrypt-ZipWithOpenSsl -Password $password
 
@@ -29,10 +39,8 @@ try {
     $settingsHash = Get-FileSha256 -Path (Get-SettingsPath)
     $archiveHash = Get-FileSha256 -Path $archivePath
 
-    $repoRoot = Get-RepoRoot
     Push-Location $repoRoot
     try {
-        Invoke-Git pull --rebase origin (Get-ToolkitConfig).branch
         $manifest = New-ManifestObject -ArchiveHash $archiveHash -DbHash $dbHash -SettingsHash $settingsHash -GitCommit (Get-GitCommitOrPlaceholder)
         Save-Manifest -Manifest $manifest
         Invoke-Git add encrypted/ccswitch-backup.zip.enc metadata/manifest.json .gitignore README.md
