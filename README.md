@@ -1,24 +1,77 @@
 # CCSwitch Sync Toolkit
 
-中文说明：
+[English](README.md) | [中文文档](docs/README.zh-CN.md) | [使用手册](docs/USAGE.zh-CN.md)
 
-- 首页说明：`README.md`
-- 中文详细手册：`docs/README.zh-CN.md`
-- 中文使用手册：`docs/USAGE.zh-CN.md`
+---
 
-English:
+## 简介
 
-- English usage: `docs/USAGE.md`
+CCSwitch Sync Toolkit 是一个用于在多台设备之间同步 ccswitch 配置的工具包。
 
-这是一个用于在多台设备之间同步本地 `ccswitch` 配置的工具包。
+**核心特性：**
+- 🔐 AES-256-CBC 加密同步
+- 🖱️ 双击运行，交互式菜单
+- 📦 自动备份恢复机制
+- 🔄 Git 版本控制
+- 🌐 支持不同设备不同路径
+- 💾 本地回滚功能
 
-它的目标是：
+---
 
-- 双击即可操作
-- 配置进入 Git 之前先加密
-- 覆盖本地前先自动做回滚备份
-- 工具仓库与同步数据仓库分离
-- 不同设备允许不同本地路径
+## 快速开始
+
+### 第一台设备（A 机器）
+
+**1. 克隆工具仓库**
+```bash
+git clone https://github.com/helloboy829/ccswitch-sync-toolkit.git
+cd ccswitch-sync-toolkit
+```
+
+**2. 克隆同步仓库**
+```bash
+cd ..
+git clone https://github.com/helloboy829/ccswitch-sync.git
+```
+
+**3. 初始化**
+双击 `Open-CCSwitch-Sync-Toolkit.cmd`，选择 `1. Initialize Toolkit`
+
+**4. 第一次备份**
+关闭 ccswitch，选择 `2. Backup-Push`，设置加密密码
+
+---
+
+### 第二台设备（B 机器）
+
+**1. 克隆两个仓库**（同上）
+
+**2. 初始化**
+双击 `Open-CCSwitch-Sync-Toolkit.cmd`，选择 `1. Initialize Toolkit`
+
+**3. 拉取配置**
+关闭 ccswitch，选择 `3. Pull-Restore`，输入相同密码
+
+---
+
+## 菜单选项说明
+
+双击 `Open-CCSwitch-Sync-Toolkit.cmd` 打开统一菜单：
+
+```
+1. Initialize Toolkit          - 首次设置（每台设备一次）
+2. Backup-Push                 - 推送本地配置到 GitHub
+3. Pull-Restore                - 从 GitHub 拉取配置到本地
+4. Rollback Previous Backup    - 回滚到上一次本地备份
+5. Show Status                 - 显示配置状态
+6. Edit Configuration          - 交互式修改 config.json
+7. Help                        - 查看帮助（中文说明）
+0. Exit                        - 退出
+```
+
+**按 `7` 查看每个选项的详细中文说明**
+
+---
 
 ## 两仓库模型
 

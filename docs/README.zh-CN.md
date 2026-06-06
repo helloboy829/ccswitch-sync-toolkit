@@ -1,4 +1,19 @@
-# CCSwitch Sync Toolkit 中文说明
+# CCSwitch Sync Toolkit - 中文文档
+
+[English](../README.md) | [中文](README.zh-CN.md)
+
+---
+
+## 📚 文档导航
+
+- **[快速开始](#快速开始)** - 5 分钟上手
+- **[使用手册](USAGE.zh-CN.md)** - 详细操作指南
+- **[常见问题](FAQ.zh-CN.md)** - 疑难解答
+- **[测试报告](TEST-REPORT.zh-CN.md)** - 功能验证
+
+---
+
+## 简介
 
 这是一个用于在多台设备之间同步本地 `ccswitch` 配置的工具包。
 
