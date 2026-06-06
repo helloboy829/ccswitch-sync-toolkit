@@ -84,6 +84,22 @@
 
 - 恢复最近一次覆盖前自动生成的本地快照
 
+## 另一台机器首次使用最短步骤
+
+1. clone `ccswitch-sync-toolkit` 到当前机器
+2. 双击 `Open-CCSwitch-Sync-Toolkit.cmd`
+3. 选择 `Initialize Toolkit`
+4. 私有同步仓库地址填：
+   - `https://github.com/helloboy829/ccswitch-sync.git`
+5. branch 填：
+   - `main`
+6. 确认当前机器上的 `ccswitch` 数据目录
+7. 如果远端配置更好：
+   - 选择 `Pull-Restore (Use Remote As Source)`
+8. 如果当前机器本地配置更好：
+   - 选择 `Backup-Push (Use Local As Source)`
+9. 输入和其他设备一致的同步加密密码
+
 ## 为什么 `D:\code\ccswitch-sync` 可能是空的
 
 如果你看到本地这个目录是空的，通常是因为：
@@ -99,3 +115,52 @@
 - 所有设备使用同一个加密密码时，这些设备都应当是可信设备
 - 不要把解密后的快照提交进任何 Git 仓库
 - 不要把 `config.json` 提交到公开 toolkit 仓库
+
+## 备份分为哪两种
+
+### 1. 远端加密备份
+
+执行：
+
+- `Backup-Push-Use-Local-As-Source.cmd`
+
+时，会把本地 `cc-switch.db` 和 `settings.json` 打包并加密后上传到私有同步仓库。
+
+所以你的私有 `ccswitch-sync` 仓库，本身就是远端加密备份。
+
+### 2. 本地回滚备份
+
+执行：
+
+- `Pull-Restore-Use-Remote-As-Source.cmd`
+
+时，会先把当前机器本地正在使用的文件保存到：
+
+- `workspace\local-backups\时间戳`
+
+如果覆盖后后悔，可以使用：
+
+- `Rollback-Restore-Previous-Local-Backup.cmd`
+
+恢复最近一次本地备份。
+
+## ccswitch 是怎么用上同步配置的
+
+原理不是“通知 ccswitch 加载新配置”，而是：
+
+- 直接替换 `ccswitch` 平时本来就会读取的本地文件
+
+核心就是这两个文件：
+
+- `cc-switch.db`
+- `settings.json`
+
+恢复时会：
+
+1. 从私有仓库拉下加密快照
+2. 用同步加密密码解密
+3. 解出 `cc-switch.db` 和 `settings.json`
+4. 覆盖当前机器的本地配置文件
+5. 再启动 `ccswitch`
+
+因此 `ccswitch` 启动后读取到的自然就是同步后的配置。

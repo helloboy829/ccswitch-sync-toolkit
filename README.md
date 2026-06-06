@@ -68,6 +68,62 @@ English:
 - 支持恢复最近一次本地备份
 - 支持每台机器独立配置路径
 
+## 备份机制
+
+这套工具有两层备份：
+
+### 1. 远端加密备份
+
+当你执行：
+
+- `Backup-Push-Use-Local-As-Source.cmd`
+
+工具会把以下文件打包并加密后上传到私有同步仓库：
+
+- `cc-switch.db`
+- `settings.json`
+
+也就是说，私有仓库 `ccswitch-sync` 本身就是你的远端加密备份仓库。
+
+### 2. 本地回滚备份
+
+当你执行：
+
+- `Pull-Restore-Use-Remote-As-Source.cmd`
+
+工具会先把当前本机正在使用的配置保存到本地回滚目录，再执行覆盖。
+
+默认位置类似：
+
+- `workspace\local-backups\YYYYMMDD-HHMMSS`
+
+如果覆盖后后悔了，可以使用：
+
+- `Rollback-Restore-Previous-Local-Backup.cmd`
+
+恢复最近一次本地备份。
+
+## ccswitch 是如何用上这些配置的
+
+这套工具不是通过 API 把配置“注入”到 `ccswitch` 里，而是直接替换 `ccswitch` 正常读取的本地配置文件。
+
+对于当前机器，`ccswitch` 实际使用的是本机数据目录里的：
+
+- `cc-switch.db`
+- `settings.json`
+
+恢复流程本质上是：
+
+1. 从私有同步仓库拉取加密快照
+2. 用同步加密密码解密
+3. 解出 `cc-switch.db` 和 `settings.json`
+4. 覆盖本机 `ccswitch` 正在使用的这两个文件
+5. 重新启动 `ccswitch`
+
+因此，`ccswitch` 下次启动时就会自然使用你同步过来的配置。
+
+这也是为什么执行备份或恢复时，不允许 `cc-switch` 正在运行。
+
 ## 推荐入口
 
 日常建议直接双击：
@@ -166,6 +222,21 @@ English:
 6. 根据需要选择：
    - 本地更好时上传
    - 远端更好时覆盖本地
+
+## 另一台机器首次使用最短清单
+
+1. clone `ccswitch-sync-toolkit` 到另一台机器任意目录
+2. 双击 `Open-CCSwitch-Sync-Toolkit.cmd`
+3. 选择 `1. Initialize Toolkit`
+4. 私有仓库地址填：
+   - `https://github.com/helloboy829/ccswitch-sync.git`
+5. branch 填：
+   - `main`
+6. 确认当前机器上的 `ccswitch` 本地路径
+7. 判断哪一份配置更好：
+   - 如果远端更好，选择 `3. Pull-Restore (Use Remote As Source)`
+   - 如果当前机器本地更好，选择 `2. Backup-Push (Use Local As Source)`
+8. 输入与其他设备相同的同步加密密码
 
 ## 许可证
 
