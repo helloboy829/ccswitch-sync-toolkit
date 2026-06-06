@@ -13,9 +13,9 @@
 
 **仓库配置：**
 - 工具仓库：`https://github.com/YOUR_USERNAME/ccswitch-sync-toolkit.git`
-- 同步仓库：`https://github.com/YOUR_USERNAME/ccswitch-sync.git` (私有)
-- 本地工具路径：`D:\code\ccswitch-sync-toolkit`
-- 本地同步路径：`D:\code\ccswitch-sync`
+- 同步仓库：`https://github.com/YOUR_USERNAME/<YOUR_PRIVATE_REPO>.git` (私有)
+- 本地工具路径：`D:\code\<your-sync-repo>-toolkit`
+- 本地同步路径：`D:\code\<your-sync-repo>`
 - ccswitch 数据目录：`C:\Users\hasee\.cc-switch`
 
 ---
@@ -30,7 +30,7 @@
 3. 输入 GitHub 私有仓库地址
 4. 输入分支名：main
 5. 确认 workspace 路径
-6. 输入同步仓库本地路径：`D:\code\ccswitch-sync`
+6. 输入同步仓库本地路径：`D:\code\<your-sync-repo>`
 7. 确认 ccswitch 数据目录（自动检测）
 
 **预期结果：**
@@ -67,7 +67,7 @@
 
 **GitHub 文件验证：**
 ```
-ccswitch-sync/
+<your-sync-repo>/
 ├── .gitignore
 ├── README.md
 ├── encrypted/
@@ -100,7 +100,7 @@ ccswitch-sync/
 **文件验证：**
 ```bash
 # 恢复前备份
-D:\code\ccswitch-sync-toolkit\workspace\local-backups\20260606-144039\
+D:\code\<your-sync-repo>-toolkit\workspace\local-backups\20260606-144039\
 ├── cc-switch.db (2.2 MB)
 └── settings.json (970 字节)
 
@@ -342,7 +342,7 @@ unzip encrypted/ccswitch-backup.zip.enc
 
 ### ✅ 同步仓库不存在
 
-**测试：** 删除 `D:\code\ccswitch-sync` 后执行操作
+**测试：** 删除 `D:\code\<your-sync-repo>` 后执行操作
 
 **预期：** 脚本检测并报错或重新克隆
 
@@ -460,10 +460,10 @@ unzip encrypted/ccswitch-backup.zip.enc
 
 ```json
 {
-    "repoUrl": "https://github.com/YOUR_USERNAME/ccswitch-sync.git",
+    "repoUrl": "https://github.com/YOUR_USERNAME/<YOUR_PRIVATE_REPO>.git",
     "branch": "main",
     "workspaceRoot": "D:\\code\\ccswitch-sync-toolkit\\workspace",
-    "syncRepoRoot": "D:\\code\\ccswitch-sync",
+    "syncRepoRoot": "D:\\code\\<your-sync-repo>",
     "sourceRoot": "C:\\Users\\hasee\\.cc-switch",
     "opensslPath": "D:\\software\\conda\\Library\\bin\\openssl.exe",
     "initializedAt": "2026-06-06T13:25:57.9122902+08:00"

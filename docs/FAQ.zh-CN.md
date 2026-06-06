@@ -10,7 +10,7 @@
    - 存放脚本和文档
    - 每台设备都克隆这个仓库
 
-2. **同步数据仓库**（私有）：`ccswitch-sync`
+2. **同步数据仓库**（私有）：`<your-sync-repo>`
    - 存放加密的配置备份
    - 包含 `encrypted/` 和 `metadata/` 目录
 
@@ -99,7 +99,7 @@
 
 如果仍遇到：
 ```bash
-cd D:\code\ccswitch-sync
+cd D:\code\<your-sync-repo>
 git status
 # 如果有未提交的更改
 git add .
@@ -137,7 +137,7 @@ git pull --rebase
 
 完整路径示例：
 ```
-D:\code\ccswitch-sync-toolkit\workspace\local-backups\20260606-144039\
+D:\code\<your-sync-repo>-toolkit\workspace\local-backups\20260606-144039\
 ├── cc-switch.db
 └── settings.json
 ```
@@ -204,7 +204,7 @@ git config --global credential.helper wincred
 **A: 可以，完全支持。**
 
 每台机器的 `config.json` 是独立的：
-- A 机器：`D:\code\ccswitch-sync-toolkit`
+- A 机器：`D:\code\<your-sync-repo>-toolkit`
 - B 机器：`E:\tools\ccswitch-sync-toolkit`
 - 同步仓库本地路径也可以不同
 

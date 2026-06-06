@@ -16,7 +16,7 @@
 2. 工具仓库：
    - 例如 `ccswitch-sync-toolkit`
 3. 同步数据仓库：
-   - 例如 `ccswitch-sync`
+   - 例如 `<your-sync-repo>`
 4. 每台机器先 clone 工具仓库
 5. 双击 `Init-Setup.cmd`
 6. 输入或确认：
@@ -92,7 +92,7 @@
 2. 双击 `Open-CCSwitch-Sync-Toolkit.cmd`
 3. 选择 `Initialize Toolkit`
 4. 私有同步仓库地址填：
-   - `https://github.com/YOUR_USERNAME/ccswitch-sync.git`
+   - `https://github.com/YOUR_USERNAME/<YOUR_PRIVATE_REPO>.git`
 5. branch 填：
    - `main`
 6. 确认当前机器上的 `ccswitch` 数据目录
@@ -102,12 +102,12 @@
    - 选择 `Backup-Push (Use Local As Source)`
 9. 输入和其他设备一致的同步加密密码
 
-## 为什么 `D:\code\ccswitch-sync` 可能是空的
+## 为什么 `D:\code\<your-sync-repo>` 可能是空的
 
 如果你看到本地这个目录是空的，通常是因为：
 
 - 这里只是预留的本地 clone 位置
-- 你还没有在本机正常 Git 环境里把私有 `ccswitch-sync` 仓库 clone 到这里
+- 你还没有在本机正常 Git 环境里把私有 `<your-sync-repo>` 仓库 clone 到这里
 
 这不代表远端 GitHub 私有仓库也是空的。
 
@@ -128,7 +128,7 @@
 
 时，会把本地 `cc-switch.db` 和 `settings.json` 打包并加密后上传到私有同步仓库。
 
-所以你的私有 `ccswitch-sync` 仓库，本身就是远端加密备份。
+所以你的私有 `<your-sync-repo>` 仓库，本身就是远端加密备份。
 
 ### 2. 本地回滚备份
 

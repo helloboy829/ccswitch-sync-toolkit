@@ -57,7 +57,7 @@ Recommended architecture:
 
 ## First-Time Setup
 
-1. Create a private GitHub repository for sync data, for example `ccswitch-sync`
+1. Create a private GitHub repository for sync data, for example `<your-sync-repo>`
 2. Create another repository for the toolkit itself, for example `ccswitch-sync-toolkit`
 3. Put this toolkit into the toolkit repository
 4. Clone the toolkit repository on each device
@@ -72,7 +72,7 @@ Recommended architecture:
 ## Two-Repository Model
 
 - Sync repository
-  Example: `ccswitch-sync`
+  Example: `<your-sync-repo>`
   Stores encrypted snapshots and `manifest.json` only
 
 - Toolkit repository

@@ -28,10 +28,11 @@ git clone https://github.com/YOUR_USERNAME/ccswitch-sync-toolkit.git
 cd ccswitch-sync-toolkit
 ```
 
-**2. 克隆同步仓库**
+**2. 创建并克隆私有同步仓库**
 ```bash
 cd ..
-git clone https://github.com/YOUR_USERNAME/ccswitch-sync.git
+# 在 GitHub 上创建一个新的私有仓库（建议命名如：my-ccswitch-sync）
+git clone https://github.com/YOUR_USERNAME/<YOUR_PRIVATE_REPO>.git
 ```
 
 **3. 初始化**
@@ -102,11 +103,11 @@ git clone https://github.com/YOUR_USERNAME/ccswitch-sync.git
 
 建议仓库名：
 
-- `ccswitch-sync`
+- 你自己选择一个名称（例如：`my-ccswitch-sync`、`ccswitch-backup` 等）
 
 说明：
 
-- 像 `D:\code\ccswitch-sync` 这种路径只是某一台机器上的本地 clone 目录
+- 像 `D:\code\my-sync-repo` 这种路径只是某一台机器上的本地 clone 目录
 - 如果你还没有在本机正常 Git 环境里 clone 私有仓库进去，那么这个目录为空是正常的
 - 本地目录空，不等于 GitHub 私有仓库有问题
 - 每台机器都可以把这个本地目录放在不同位置
@@ -137,7 +138,7 @@ git clone https://github.com/YOUR_USERNAME/ccswitch-sync.git
 - `cc-switch.db`
 - `settings.json`
 
-也就是说，私有仓库 `ccswitch-sync` 本身就是你的远端加密备份仓库。
+也就是说，你的私有同步仓库本身就是你的远端加密备份仓库。
 
 ### 2. 本地回滚备份
 
@@ -284,7 +285,7 @@ git clone https://github.com/YOUR_USERNAME/ccswitch-sync.git
 2. 双击 `Open-CCSwitch-Sync-Toolkit.cmd`
 3. 选择 `1. Initialize Toolkit`
 4. 私有仓库地址填：
-   - `https://github.com/YOUR_USERNAME/ccswitch-sync.git`
+   - `https://github.com/YOUR_USERNAME/<YOUR_PRIVATE_REPO>.git`
 5. branch 填：
    - `main`
 6. 确认当前机器上的 `ccswitch` 本地路径

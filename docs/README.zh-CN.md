@@ -45,7 +45,7 @@
 
 例如：
 
-- `ccswitch-sync`
+- `<your-sync-repo>`
 
 用途：
 
@@ -54,7 +54,7 @@
 
 说明：
 
-- `D:\code\ccswitch-sync` 这种路径只是某一台机器上的本地 clone 目录
+- `D:\code\<your-sync-repo>` 这种路径只是某一台机器上的本地 clone 目录
 - 如果你还没有在本机正常 Git 环境里 clone 私有仓库进去，那么这个目录为空是正常的
 - 远端 GitHub 私有仓库和本地空目录不是一回事
 - 每台机器都可以把这个本地目录放在不同位置
@@ -121,7 +121,7 @@
 
 因此：
 
-- 你的 A 机器可以放在 `D:\code\ccswitch-sync-toolkit`
+- 你的 A 机器可以放在 `D:\code\<your-sync-repo>-toolkit`
 - 你的 B 机器可以放在 `E:\tools\ccswitch-sync-toolkit`
 - 不需要所有机器完全相同
 - 私有 sync repo 的本地目录也同样不需要一致
