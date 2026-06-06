@@ -24,14 +24,14 @@ CCSwitch Sync Toolkit 是一个用于在多台设备之间同步 ccswitch 配置
 
 **1. 克隆工具仓库**
 ```bash
-git clone https://github.com/helloboy829/ccswitch-sync-toolkit.git
+git clone https://github.com/YOUR_USERNAME/ccswitch-sync-toolkit.git
 cd ccswitch-sync-toolkit
 ```
 
 **2. 克隆同步仓库**
 ```bash
 cd ..
-git clone https://github.com/helloboy829/ccswitch-sync.git
+git clone https://github.com/YOUR_USERNAME/ccswitch-sync.git
 ```
 
 **3. 初始化**
@@ -284,7 +284,7 @@ git clone https://github.com/helloboy829/ccswitch-sync.git
 2. 双击 `Open-CCSwitch-Sync-Toolkit.cmd`
 3. 选择 `1. Initialize Toolkit`
 4. 私有仓库地址填：
-   - `https://github.com/helloboy829/ccswitch-sync.git`
+   - `https://github.com/YOUR_USERNAME/ccswitch-sync.git`
 5. branch 填：
    - `main`
 6. 确认当前机器上的 `ccswitch` 本地路径

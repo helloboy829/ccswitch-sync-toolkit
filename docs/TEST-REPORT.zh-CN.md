@@ -5,15 +5,15 @@
 **测试日期：** 2026-06-06
 
 **测试机器：**
-- 机器名：DESKTOP-7T495TF
+- 机器名：YOUR-MACHINE-NAME
 - 操作系统：Windows 11 Pro 10.0.26200
 - PowerShell：5.1+
 - Git：已安装
 - OpenSSL：通过 conda 安装
 
 **仓库配置：**
-- 工具仓库：`https://github.com/helloboy829/ccswitch-sync-toolkit.git`
-- 同步仓库：`https://github.com/helloboy829/ccswitch-sync.git` (私有)
+- 工具仓库：`https://github.com/YOUR_USERNAME/ccswitch-sync-toolkit.git`
+- 同步仓库：`https://github.com/YOUR_USERNAME/ccswitch-sync.git` (私有)
 - 本地工具路径：`D:\code\ccswitch-sync-toolkit`
 - 本地同步路径：`D:\code\ccswitch-sync`
 - ccswitch 数据目录：`C:\Users\hasee\.cc-switch`
@@ -446,7 +446,7 @@ unzip encrypted/ccswitch-backup.zip.enc
     "archiveSha256": "6fdabd3a3b1b06d282db6d3643f825cf5cb7b439268d6d1da18b647f9e9ca9ed",
     "app": "ccswitch",
     "archiveFile": "encrypted/ccswitch-backup.zip.enc",
-    "machineName": "DESKTOP-7T495TF",
+    "machineName": "YOUR-MACHINE-NAME",
     "gitCommit": "a1b324310548808b79124e3c688a0f427c68f753",
     "databaseSha256": "48bcff521657fef69fd72affa42e3714370fdfe79799a0334c50344bc13ea8b1",
     "formatVersion": 1,
@@ -460,7 +460,7 @@ unzip encrypted/ccswitch-backup.zip.enc
 
 ```json
 {
-    "repoUrl": "https://github.com/helloboy829/ccswitch-sync.git",
+    "repoUrl": "https://github.com/YOUR_USERNAME/ccswitch-sync.git",
     "branch": "main",
     "workspaceRoot": "D:\\code\\ccswitch-sync-toolkit\\workspace",
     "syncRepoRoot": "D:\\code\\ccswitch-sync",
