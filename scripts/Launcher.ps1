@@ -14,43 +14,44 @@ function Invoke-ToolkitScript {
 
 function Show-Help {
     Clear-Host
-    Write-Host "CCSwitch Sync Toolkit - Help" -ForegroundColor Cyan
+    Write-Host "CCSwitch Sync Toolkit - 帮助文档" -ForegroundColor Cyan
     Write-Host ""
-    Write-Host "1. Initialize Toolkit" -ForegroundColor Yellow
-    Write-Host "   - First-time setup: create config.json"
-    Write-Host "   - Detect ccswitch data directory"
-    Write-Host "   - Configure sync repository location"
-    Write-Host "   - Run this once per device"
+    Write-Host "1. Initialize Toolkit（初始化工具）" -ForegroundColor Yellow
+    Write-Host "   - 首次设置：生成 config.json"
+    Write-Host "   - 自动检测 ccswitch 数据目录"
+    Write-Host "   - 配置同步仓库位置"
+    Write-Host "   - 每台设备只需运行一次"
     Write-Host ""
-    Write-Host "2. Backup-Push (Use Local As Source)" -ForegroundColor Yellow
-    Write-Host "   - Encrypt local ccswitch config"
-    Write-Host "   - Push encrypted backup to GitHub"
-    Write-Host "   - Use when: your current device has the latest config"
-    Write-Host "   - Requires: ccswitch must be closed"
+    Write-Host "2. Backup-Push（备份推送 - 本地为准）" -ForegroundColor Yellow
+    Write-Host "   - 加密本地 ccswitch 配置"
+    Write-Host "   - 推送加密备份到 GitHub"
+    Write-Host "   - 使用场景：当前设备有最新配置"
+    Write-Host "   - 要求：必须关闭 ccswitch 应用"
     Write-Host ""
-    Write-Host "3. Pull-Restore (Use Remote As Source)" -ForegroundColor Yellow
-    Write-Host "   - Pull encrypted backup from GitHub"
-    Write-Host "   - Decrypt and overwrite local config"
-    Write-Host "   - Auto-creates local backup before overwriting"
-    Write-Host "   - Use when: another device has the latest config"
-    Write-Host "   - Requires: ccswitch must be closed"
+    Write-Host "3. Pull-Restore（拉取恢复 - 远端为准）" -ForegroundColor Yellow
+    Write-Host "   - 从 GitHub 拉取加密备份"
+    Write-Host "   - 解密并覆盖本地配置"
+    Write-Host "   - 覆盖前自动创建本地备份"
+    Write-Host "   - 使用场景：其他设备有最新配置"
+    Write-Host "   - 要求：必须关闭 ccswitch 应用"
     Write-Host ""
-    Write-Host "4. Rollback Previous Local Backup" -ForegroundColor Yellow
-    Write-Host "   - Restore the most recent local backup"
-    Write-Host "   - Use when: Pull-Restore went wrong"
-    Write-Host "   - Only restores the latest local snapshot"
+    Write-Host "4. Rollback Previous Local Backup（回滚本地备份）" -ForegroundColor Yellow
+    Write-Host "   - 恢复最近一次本地备份"
+    Write-Host "   - 使用场景：拉取恢复后发现不对"
+    Write-Host "   - 只能恢复最新的本地快照"
     Write-Host ""
-    Write-Host "5. Show Status" -ForegroundColor Yellow
-    Write-Host "   - Display current configuration"
-    Write-Host "   - Show initialization status"
-    Write-Host "   - Check paths and settings"
+    Write-Host "5. Show Status（显示状态）" -ForegroundColor Yellow
+    Write-Host "   - 显示当前配置信息"
+    Write-Host "   - 显示初始化状态"
+    Write-Host "   - 检查路径和设置"
     Write-Host ""
-    Write-Host "6. Edit Configuration" -ForegroundColor Yellow
-    Write-Host "   - Modify config.json interactively"
-    Write-Host "   - Update sync repository path"
-    Write-Host "   - Change ccswitch data directory"
+    Write-Host "6. Edit Configuration（编辑配置）" -ForegroundColor Yellow
+    Write-Host "   - 交互式修改 config.json"
+    Write-Host "   - 更新同步仓库路径"
+    Write-Host "   - 修改 ccswitch 数据目录"
+    Write-Host "   - 修改 OpenSSL 路径等"
     Write-Host ""
-    Write-Host "7. Help - Show this help message" -ForegroundColor Yellow
+    Write-Host "7. Help（帮助）- 显示此帮助信息" -ForegroundColor Yellow
     Write-Host ""
 }
 
