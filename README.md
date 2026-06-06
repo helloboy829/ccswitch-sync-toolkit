@@ -53,9 +53,10 @@ English:
 
 说明：
 
-- 像 `D:\code\ccswitch-sync` 这种路径只是本地 clone 目录
+- 像 `D:\code\ccswitch-sync` 这种路径只是某一台机器上的本地 clone 目录
 - 如果你还没有在本机正常 Git 环境里 clone 私有仓库进去，那么这个目录为空是正常的
 - 本地目录空，不等于 GitHub 私有仓库有问题
+- 每台机器都可以把这个本地目录放在不同位置
 
 ## 能做什么
 
@@ -203,6 +204,7 @@ English:
 - A 机器可以在 `D:\code\ccswitch-sync-toolkit`
 - B 机器可以在 `E:\tools\ccswitch-sync-toolkit`
 - 不需要所有机器完全相同
+- 私有 sync repo 本地目录也一样，每台机器都可以不同
 
 ## 安全说明
 

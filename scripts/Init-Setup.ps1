@@ -9,6 +9,7 @@ try {
 
     $toolkitRoot = Get-ToolkitRoot
     $defaultWorkspace = Join-Path $toolkitRoot "workspace"
+    $defaultSyncRepoRoot = Join-Path (Split-Path -Parent $toolkitRoot) "ccswitch-sync"
     $autoDetectedSource = Find-SourceRoot -PreferredPath (Join-Path $env:USERPROFILE ".cc-switch")
     if ([string]::IsNullOrWhiteSpace($autoDetectedSource)) {
         $defaultSource = Join-Path $env:USERPROFILE ".cc-switch"
@@ -48,6 +49,11 @@ try {
         $workspaceInput = $defaultWorkspace
     }
 
+    $syncRepoInput = Read-Host "Local sync repo directory [$defaultSyncRepoRoot]"
+    if ([string]::IsNullOrWhiteSpace($syncRepoInput)) {
+        $syncRepoInput = $defaultSyncRepoRoot
+    }
+
     if (Test-ValidSourceRoot -Path $defaultSource) {
         Write-Info "Auto-detected ccswitch local data directory: $defaultSource"
         $sourceInput = Read-Host "ccswitch local data directory [$defaultSource]"
@@ -74,6 +80,7 @@ try {
         repoUrl = $repoUrlInput
         branch = $branchInput
         workspaceRoot = $workspaceInput
+        syncRepoRoot = $syncRepoInput
         sourceRoot = $sourceInput
         opensslPath = $detectedOpenSsl
         initializedAt = (Get-Date).ToString("o")
@@ -88,7 +95,7 @@ try {
     $repoRoot = Get-RepoRoot
     $gitDir = Join-Path $repoRoot ".git"
     if ((Test-Path $repoRoot) -and -not (Test-Path $gitDir) -and ((Get-ChildItem -LiteralPath $repoRoot -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)) {
-        throw "Workspace repo directory already exists and is not empty: $repoRoot . Delete it and run Init-Setup.cmd again."
+        throw "Sync repo directory already exists and is not empty: $repoRoot . Initialize that repo manually or choose another local sync repo directory."
     }
     if (-not (Test-Path $gitDir)) {
         Write-Info "Cloning repository"
@@ -100,7 +107,7 @@ try {
     } else {
         $actualRemote = Get-GitRemoteUrl -RepoPath $repoRoot
         if ($actualRemote -ne $repoUrlInput) {
-            throw "Workspace repo remote mismatch. Expected: $repoUrlInput ; Actual: $actualRemote . Delete workspace\\repo and run Init-Setup.cmd again."
+            throw "Sync repo remote mismatch. Expected: $repoUrlInput ; Actual: $actualRemote . Fix the local sync repo directory or re-run Init-Setup.cmd."
         }
         Write-Info "Repository already exists locally and matches configured remote, skipping clone"
     }
@@ -132,8 +139,9 @@ This repository stores only encrypted ccswitch backups and manifest metadata.
     Write-Host ""
     Write-Host "Next steps:"
     Write-Host "1. Edit config if needed: $(Get-ToolkitConfigPath)"
-    Write-Host "2. Run Backup-Push.cmd to create the first encrypted backup"
-    Write-Host "3. On another device, copy this toolkit and run Init-Setup.cmd with the same repo"
+    Write-Host "2. Local sync repo: $(Get-RepoRoot)"
+    Write-Host "3. Run Backup-Push.cmd to create the first encrypted backup"
+    Write-Host "4. On another device, clone this toolkit and run Init-Setup.cmd with the same remote repo"
 } catch {
     Write-Fail $_.Exception.Message
     exit 1

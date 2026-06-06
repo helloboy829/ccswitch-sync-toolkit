@@ -91,7 +91,8 @@ function Get-WorkspaceRoot {
 }
 
 function Get-RepoRoot {
-    return (Join-Path (Get-WorkspaceRoot) "repo")
+    $config = Get-ToolkitConfig
+    return $config.syncRepoRoot
 }
 
 function Get-StagingRoot {
@@ -436,6 +437,6 @@ function Assert-WorkspaceRepoMatchesConfig {
         throw "Workspace repo exists but has no origin remote: $repoRoot"
     }
     if ($actualRemote -ne $config.repoUrl) {
-        throw "Workspace repo remote mismatch. Expected: $($config.repoUrl) ; Actual: $actualRemote . Delete workspace\\repo and run Init-Setup.cmd again."
+        throw "Sync repo remote mismatch. Expected: $($config.repoUrl) ; Actual: $actualRemote . Fix syncRepoRoot or re-run Init-Setup.cmd."
     }
 }
