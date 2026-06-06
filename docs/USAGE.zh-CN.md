@@ -34,11 +34,17 @@
 
 ## 日常操作
 
+建议日常统一双击：
+
+- `Open-CCSwitch-Sync-Toolkit.cmd`
+
+然后在菜单里选择要执行的动作。
+
 ### 发布当前机器上的本地配置
 
-双击：
+双击统一入口后选择：
 
-- `Backup-Push-Use-Local-As-Source.cmd`
+- `Backup-Push (Use Local As Source)`
 
 效果：
 
@@ -53,9 +59,9 @@
 
 ### 用远端配置覆盖当前机器
 
-双击：
+双击统一入口后选择：
 
-- `Pull-Restore-Use-Remote-As-Source.cmd`
+- `Pull-Restore (Use Remote As Source)`
 
 效果：
 
@@ -70,9 +76,9 @@
 
 ### 后悔了，恢复最近一次本地备份
 
-双击：
+双击统一入口后选择：
 
-- `Rollback-Restore-Previous-Local-Backup.cmd`
+- `Rollback Previous Local Backup`
 
 效果：
 

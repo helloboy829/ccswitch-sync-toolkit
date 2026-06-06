@@ -87,17 +87,25 @@ try {
 
     $repoRoot = Get-RepoRoot
     $gitDir = Join-Path $repoRoot ".git"
+    if ((Test-Path $repoRoot) -and -not (Test-Path $gitDir) -and ((Get-ChildItem -LiteralPath $repoRoot -Force -ErrorAction SilentlyContinue | Measure-Object).Count -gt 0)) {
+        throw "Workspace repo directory already exists and is not empty: $repoRoot . Delete it and run Init-Setup.cmd again."
+    }
     if (-not (Test-Path $gitDir)) {
         Write-Info "Cloning repository"
+        Remove-Item -LiteralPath $repoRoot -Recurse -Force -ErrorAction SilentlyContinue
         & git clone --branch $branchInput $repoUrlInput $repoRoot
         if ($LASTEXITCODE -ne 0) {
             throw "Failed to clone repository. Check repo URL and SSH/credential setup."
         }
     } else {
-        Write-Info "Repository already exists locally, skipping clone"
+        $actualRemote = Get-GitRemoteUrl -RepoPath $repoRoot
+        if ($actualRemote -ne $repoUrlInput) {
+            throw "Workspace repo remote mismatch. Expected: $repoUrlInput ; Actual: $actualRemote . Delete workspace\\repo and run Init-Setup.cmd again."
+        }
+        Write-Info "Repository already exists locally and matches configured remote, skipping clone"
     }
 
-    Ensure-Directories
+    Ensure-Directories -IncludeRepo
 
     $gitignorePath = Join-Path $repoRoot ".gitignore"
     if (-not (Test-Path $gitignorePath)) {

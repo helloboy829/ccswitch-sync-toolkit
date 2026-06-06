@@ -153,15 +153,22 @@ function Get-OpenSslPath {
 }
 
 function Ensure-Directories {
+    param(
+        [switch]$IncludeRepo
+    )
     $paths = @(
         (Get-WorkspaceRoot),
-        (Get-RepoRoot),
         (Get-StagingRoot),
         (Get-RestoreRoot),
-        (Get-BackupRoot),
-        (Join-Path (Get-RepoRoot) "encrypted"),
-        (Join-Path (Get-RepoRoot) "metadata")
+        (Get-BackupRoot)
     )
+    if ($IncludeRepo) {
+        $paths += @(
+            (Get-RepoRoot),
+            (Join-Path (Get-RepoRoot) "encrypted"),
+            (Join-Path (Get-RepoRoot) "metadata")
+        )
+    }
     foreach ($path in $paths) {
         if (-not (Test-Path $path)) {
             New-Item -ItemType Directory -Force -Path $path | Out-Null
@@ -388,4 +395,47 @@ function Get-GitCommitOrPlaceholder {
     } catch {
     }
     return "uncommitted"
+}
+
+function Test-GitRepository {
+    param([string]$Path)
+    $gitDir = Join-Path $Path ".git"
+    return (Test-Path $gitDir)
+}
+
+function Get-GitRemoteUrl {
+    param(
+        [string]$RepoPath,
+        [string]$RemoteName = "origin"
+    )
+    if (-not (Test-GitRepository -Path $RepoPath)) {
+        return $null
+    }
+    try {
+        $output = & git -C $RepoPath remote get-url $RemoteName 2>$null
+        if ($LASTEXITCODE -eq 0) {
+            return ($output | Select-Object -First 1)
+        }
+    } catch {
+    }
+    return $null
+}
+
+function Assert-WorkspaceRepoMatchesConfig {
+    $repoRoot = Get-RepoRoot
+    if (-not (Test-Path $repoRoot)) {
+        return
+    }
+    if (-not (Test-GitRepository -Path $repoRoot)) {
+        return
+    }
+
+    $config = Get-ToolkitConfig
+    $actualRemote = Get-GitRemoteUrl -RepoPath $repoRoot
+    if ([string]::IsNullOrWhiteSpace($actualRemote)) {
+        throw "Workspace repo exists but has no origin remote: $repoRoot"
+    }
+    if ($actualRemote -ne $config.repoUrl) {
+        throw "Workspace repo remote mismatch. Expected: $($config.repoUrl) ; Actual: $actualRemote . Delete workspace\\repo and run Init-Setup.cmd again."
+    }
 }

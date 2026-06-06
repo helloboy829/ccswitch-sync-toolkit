@@ -120,8 +120,15 @@
 
 ## 入口脚本
 
+- `Open-CCSwitch-Sync-Toolkit.cmd`
 - `Init-Setup.cmd`
 - `Backup-Push-Use-Local-As-Source.cmd`
 - `Pull-Restore-Use-Remote-As-Source.cmd`
 - `Rollback-Restore-Previous-Local-Backup.cmd`
 - `Status.cmd`
+
+建议日常直接双击：
+
+- `Open-CCSwitch-Sync-Toolkit.cmd`
+
+然后在一个统一窗口里选择你要执行的操作。

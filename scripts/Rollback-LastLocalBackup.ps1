@@ -5,7 +5,7 @@ $ErrorActionPreference = "Stop"
 
 try {
     Write-Info "Restoring the most recent local backup snapshot"
-    Ensure-Directories
+    Ensure-Directories -IncludeRepo
     Assert-CcSwitchStopped
     Assert-SourceFilesExist
 

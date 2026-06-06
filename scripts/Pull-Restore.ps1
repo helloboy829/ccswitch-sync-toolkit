@@ -7,7 +7,8 @@ try {
     Write-Info "Pulling encrypted backup from Git and restoring locally"
     Write-WarnLine "This action uses REMOTE data as the source of truth."
     Write-WarnLine "It will replace your current local ccswitch config with the remote backup snapshot."
-    Ensure-Directories
+    Ensure-Directories -IncludeRepo
+    Assert-WorkspaceRepoMatchesConfig
     Assert-CcSwitchStopped
 
     $confirm = Read-Host "Type YES to continue"

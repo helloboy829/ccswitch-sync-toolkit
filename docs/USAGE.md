@@ -42,6 +42,8 @@ Recommended architecture:
 
 ## Files
 
+- `Open-CCSwitch-Sync-Toolkit.cmd`
+  Unified launcher with an interactive menu
 - `Init-Setup.cmd`
   Initializes the toolkit and clones the repo
 - `Backup-Push.cmd`
@@ -60,8 +62,9 @@ Recommended architecture:
 3. Put this toolkit into the toolkit repository
 4. Clone the toolkit repository on each device
 5. Make sure each machine can `git clone` and `git push` to the private sync repository
-6. Double-click `Init-Setup.cmd`
-7. Enter:
+6. Double-click `Open-CCSwitch-Sync-Toolkit.cmd`
+7. Choose `Initialize Toolkit`
+8. Enter:
    - your private repo URL
    - branch name
    - local `.cc-switch` path only if auto-detection is wrong or not found
@@ -92,11 +95,12 @@ Recommended architecture:
 ### Push current local config to cloud
 
 1. Close `cc-switch`
-2. Double-click `Backup-Push.cmd`
-3. Read the warning carefully
-4. Type `YES`
-5. Enter the encryption password
-6. Wait for push to complete
+2. Double-click `Open-CCSwitch-Sync-Toolkit.cmd`
+3. Choose `Backup-Push (Use Local As Source)`
+4. Read the warning carefully
+5. Type `YES`
+6. Enter the encryption password
+7. Wait for push to complete
 
 This mode means:
 
@@ -106,11 +110,12 @@ This mode means:
 ### Pull latest config from cloud to this device
 
 1. Close `cc-switch`
-2. Double-click `Pull-Restore.cmd`
-3. Read the warning carefully
-4. Type `YES`
-5. Enter the same encryption password
-6. Start `cc-switch` after restore completes
+2. Double-click `Open-CCSwitch-Sync-Toolkit.cmd`
+3. Choose `Pull-Restore (Use Remote As Source)`
+4. Read the warning carefully
+5. Type `YES`
+6. Enter the same encryption password
+7. Start `cc-switch` after restore completes
 
 This mode means:
 
@@ -120,8 +125,9 @@ This mode means:
 ### Undo the latest overwrite
 
 1. Close `cc-switch`
-2. Double-click `Rollback-LastLocalBackup.cmd`
-3. Start `cc-switch` after rollback completes
+2. Double-click `Open-CCSwitch-Sync-Toolkit.cmd`
+3. Choose `Rollback Previous Local Backup`
+4. Start `cc-switch` after rollback completes
 
 ## Safety Notes
 

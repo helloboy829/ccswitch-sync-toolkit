@@ -7,7 +7,8 @@ try {
     Write-Info "Starting encrypted backup and Git push"
     Write-WarnLine "This action uses LOCAL data as the source of truth."
     Write-WarnLine "It will publish your current local ccswitch config to GitHub and replace the remote backup snapshot."
-    Ensure-Directories
+    Ensure-Directories -IncludeRepo
+    Assert-WorkspaceRepoMatchesConfig
     Assert-SourceFilesExist
     Assert-CcSwitchStopped
 
