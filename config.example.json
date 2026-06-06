@@ -1,0 +1,8 @@
+{
+  "repoUrl": "https://github.com/helloboy829/ccswitch-sync.git",
+  "branch": "main",
+  "workspaceRoot": "C:\\Users\\YourUser\\ccswitch-sync-toolkit\\workspace",
+  "sourceRoot": "C:\\Users\\YourUser\\.cc-switch",
+  "opensslPath": "C:\\Path\\To\\openssl.exe",
+  "initializedAt": "2026-06-06T00:00:00+08:00"
+}
